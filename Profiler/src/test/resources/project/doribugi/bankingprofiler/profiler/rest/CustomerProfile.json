@@ -1,0 +1,8 @@
+{
+  "customer_number": 1,
+  "name": "홍길동",
+  "join_dt": "2018-06-30 13:00:00",
+  "largest_deposit_acmount": 100000,
+  "largest_withdrawal_acmount": 20000,
+  "largest_transfer_acmount": 40000
+}
