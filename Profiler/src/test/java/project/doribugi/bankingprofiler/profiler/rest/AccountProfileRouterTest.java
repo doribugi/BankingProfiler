@@ -10,8 +10,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
-import project.doribugi.bankingprofiler.profiler.entity.AccountProfile;
-import project.doribugi.bankingprofiler.profiler.entity.Transaction;
+import project.doribugi.bankingprofiler.profiler.profile.AccountProfile;
+import project.doribugi.bankingprofiler.profiler.profile.Transaction;
 import project.doribugi.bankingprofiler.profiler.repository.Repository;
 import spark.Request;
 

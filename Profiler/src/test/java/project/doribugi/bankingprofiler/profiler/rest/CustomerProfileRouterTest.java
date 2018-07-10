@@ -8,7 +8,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
-import project.doribugi.bankingprofiler.profiler.entity.CustomerProfile;
+import project.doribugi.bankingprofiler.profiler.profile.CustomerProfile;
 import project.doribugi.bankingprofiler.profiler.repository.Repository;
 import spark.Request;
 

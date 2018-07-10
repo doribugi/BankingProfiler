@@ -1,7 +1,7 @@
 package project.doribugi.bankingprofiler.profiler.rest;
 
 import com.google.gson.GsonBuilder;
-import project.doribugi.bankingprofiler.profiler.entity.AccountProfile;
+import project.doribugi.bankingprofiler.profiler.profile.AccountProfile;
 import project.doribugi.bankingprofiler.profiler.repository.Repository;
 import spark.Request;
 import spark.Response;

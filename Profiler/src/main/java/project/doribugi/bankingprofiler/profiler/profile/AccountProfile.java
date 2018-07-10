@@ -1,4 +1,4 @@
-package project.doribugi.bankingprofiler.profiler.entity;
+package project.doribugi.bankingprofiler.profiler.profile;
 
 import java.util.List;
 
