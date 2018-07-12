@@ -2,7 +2,7 @@ package project.doribugi.bankingprofiler.profiler.banking;
 
 import java.util.Objects;
 
-public class Deposit {
+public class Deposit implements BankingInfo {
 
   private long customerNumber;
   private String accountNumber;

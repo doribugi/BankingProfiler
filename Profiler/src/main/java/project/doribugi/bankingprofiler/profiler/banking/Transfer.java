@@ -2,7 +2,7 @@ package project.doribugi.bankingprofiler.profiler.banking;
 
 import java.util.Objects;
 
-public class Transfer {
+public class Transfer implements BankingInfo {
 
   private long customerNumber;
   private String accountNumber;
@@ -12,8 +12,13 @@ public class Transfer {
   private long transferAmount;
   private String transferDt;
 
-  public Transfer(long customerNumber, String accountNumber, String receivingBank,
-      String receivingAccountNumber, String receivingAccountOwner, long transferAmount,
+  public Transfer(
+      long customerNumber,
+      String accountNumber,
+      String receivingBank,
+      String receivingAccountNumber,
+      String receivingAccountOwner,
+      long transferAmount,
       String transferDt) {
     this.customerNumber = customerNumber;
     this.accountNumber = accountNumber;

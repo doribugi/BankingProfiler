@@ -2,7 +2,7 @@ package project.doribugi.bankingprofiler.profiler.banking;
 
 import java.util.Objects;
 
-public class Withdrawal {
+public class Withdrawal implements BankingInfo {
 
   private long customerNumber;
   private String accountNumber;
@@ -13,8 +13,7 @@ public class Withdrawal {
       long customerNumber,
       String accountNumber,
       long withdrawalAmount,
-      String withdrawalDt
-  ) {
+      String withdrawalDt) {
     this.customerNumber = customerNumber;
     this.accountNumber = accountNumber;
     this.withdrawalAmount = withdrawalAmount;

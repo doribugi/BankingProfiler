@@ -4,5 +4,5 @@ public interface LogParser<T> {
 
   String topic();
 
-  T parse(String logMessage);
+  T parse(String logMessage) throws IllegalLogFormatException;
 }

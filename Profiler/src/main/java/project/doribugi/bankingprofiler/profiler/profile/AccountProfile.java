@@ -11,7 +11,8 @@ public class AccountProfile {
   private List<Transaction> withdrawals;
   private List<Transaction> transfers;
 
-  public AccountProfile(long customer_number,
+  public AccountProfile(
+      long customer_number,
       long account_number,
       String create_dt,
       long balance,

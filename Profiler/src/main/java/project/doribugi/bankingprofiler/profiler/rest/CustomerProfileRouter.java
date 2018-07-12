@@ -17,7 +17,11 @@ public class CustomerProfileRouter implements Route {
 
   @Override
   public Object handle(Request request, Response response) throws Exception {
-    CustomerProfile profile = repository.read(request.params(":customer_number"));
+    String customerNumber = request.params(":customer_number");
+    String log
+        = String.format("Customer profile is requested (customer number: %s)", customerNumber);
+    System.out.println(log);
+    CustomerProfile profile = repository.read(customerNumber);
     return new GsonBuilder().setPrettyPrinting().create().toJson(profile);
   }
 }

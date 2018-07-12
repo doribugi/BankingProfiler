@@ -2,7 +2,7 @@ package project.doribugi.bankingprofiler.profiler.banking;
 
 import java.util.Objects;
 
-public class Join {
+public class Join implements BankingInfo {
 
   private long customerNumber;
   private String customerName;

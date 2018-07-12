@@ -17,7 +17,14 @@ public class AccountProfileRouter implements Route {
 
   @Override
   public Object handle(Request request, Response response) throws Exception {
-    String id = request.params(":customer_number") + "_" + request.params(":account_number");
+    String customerNumber = request.params(":customer_number");
+    String accountNumber = request.params(":account_number");
+    String log = String.format(
+        "Customer profile is requested (customer number: %s, account number: %s",
+        customerNumber, accountNumber);
+    System.out.println(log);
+
+    String id = customerNumber + "_" + accountNumber;
     AccountProfile profile = repository.read(id);
     return new GsonBuilder().setPrettyPrinting().create().toJson(profile);
   }
