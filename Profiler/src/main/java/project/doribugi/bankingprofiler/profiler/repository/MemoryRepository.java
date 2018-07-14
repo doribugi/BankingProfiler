@@ -13,7 +13,18 @@ public class MemoryRepository<T> implements Repository<T> {
   }
 
   @Override
+  public void create(String id, T t) {
+    if (dataMap.containsKey(id)) {
+      throw new IllegalArgumentException();
+    }
+    dataMap.put(id, t);
+  }
+
+  @Override
   public void update(String id, T t) {
+    if (!dataMap.containsKey(id)) {
+      throw new IllegalArgumentException();
+    }
     dataMap.put(id, t);
   }
 }

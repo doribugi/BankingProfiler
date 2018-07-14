@@ -8,10 +8,10 @@ public class JoinLogParserTest {
 
   @Test
   public void testParse() {
-    String logMessage = "join, 1, 3333010001, 2018-06-30 13:00:00";
+    String logMessage = "join, 1, 홍길동, 2018-06-30 13:00:00";
     Join expected = new Join(
         1,
-        "3333010001",
+        "홍길동",
         "2018-06-30 13:00:00"
     );
     JoinLogParser parser = new JoinLogParser();
@@ -19,7 +19,7 @@ public class JoinLogParserTest {
     Assert.assertEquals(expected, actual);
   }
 
-  @Test(expected = NumberFormatException.class)
+  @Test(expected = IllegalLogFormatException.class)
   public void testParseException() {
     String logMessage = "join, abc, 3333010001, 2018-06-30 13:00:00";
     JoinLogParser parser = new JoinLogParser();

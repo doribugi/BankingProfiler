@@ -9,15 +9,17 @@ import project.doribugi.bankingprofiler.profiler.rest.CustomerProfileRouter;
 import spark.Spark;
 
 public class RestService implements Service {
-
   private static final String API_CUSTOMER_PROFILE = "/api/customer/:customer_number";
   private static final String API_ACCOUNT_PROFILE
       = "/api/customer/:customer_number/account/:account_number";
 
   private final RepositoryService repositoryService;
 
-  public RestService(RepositoryService repositoryService) {
+  public RestService(String ipAddress, int port, RepositoryService repositoryService) {
     this.repositoryService = repositoryService;
+
+    Spark.ipAddress(ipAddress);
+    Spark.port(port);
   }
 
   @Override

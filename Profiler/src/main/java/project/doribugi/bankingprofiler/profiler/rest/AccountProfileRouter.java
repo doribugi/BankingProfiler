@@ -20,7 +20,7 @@ public class AccountProfileRouter implements Route {
     String customerNumber = request.params(":customer_number");
     String accountNumber = request.params(":account_number");
     String log = String.format(
-        "Customer profile is requested (customer number: %s, account number: %s",
+        "Customer profile is requested (customer number: %s, account number: %s)",
         customerNumber, accountNumber);
     System.out.println(log);
 

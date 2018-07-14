@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import kafka.common.UnknownException;
 import project.doribugi.bankingprofiler.profiler.banking.BankingInfo;
@@ -84,6 +85,9 @@ public class LogParsingService implements Service {
   }
 
   public void stop() throws InterruptedException {
+    while (!queue.isEmpty()) {
+      Thread.sleep(500);
+    }
     onLogParsing = false;
     if (logParsingThread != null) {
       logParsingThread.join();

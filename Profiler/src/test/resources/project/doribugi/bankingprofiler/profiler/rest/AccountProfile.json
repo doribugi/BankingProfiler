@@ -1,6 +1,6 @@
 {
   "customer_number": 1,
-  "account_number": 3333010001,
+  "account_number": "3333010001",
   "create_dt": "2018-06-30 13:15:00",
   "balance": 50000,
   "deposits": [
@@ -9,7 +9,7 @@
       "datetime": "2018-06-30 13:15:00"
     },
     {
-      "amount": 500000,
+      "amount": 50000,
       "datetime": "2018-06-30 13:25:00"
     }
   ],
