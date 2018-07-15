@@ -15,6 +15,9 @@ import project.doribugi.bankingprofiler.profiler.logparser.LogParser;
 import project.doribugi.bankingprofiler.profiler.logparser.TransferLogParser;
 import project.doribugi.bankingprofiler.profiler.logparser.WithdrawalLogParser;
 
+/**
+ * 로그의 Parsing 을 수행하는 서비스 클래스.
+ */
 public class LogParsingService implements Service {
 
   private final List<LogParser<? extends BankingInfo>> logParserList = new ArrayList<>();
@@ -34,6 +37,9 @@ public class LogParsingService implements Service {
     logParserList.add(new WithdrawalLogParser());
   }
 
+  /**
+   * 서비스 시작.
+   */
   @Override
   public void start() {
     logParsingThread = new Thread(this::parse, "LogParsingThread");
@@ -41,6 +47,9 @@ public class LogParsingService implements Service {
     logParsingThread.start();
   }
 
+  /**
+   * 서비스 중지.
+   */
   @Override
   public void stop() {
     while (!queue.isEmpty()) {

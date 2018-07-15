@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * REST API 로 제공하기 위한 Account Profile Entity 클래스.
+ */
 public class AccountProfile {
   @SerializedName("customer_number")
   private long customerNumber;

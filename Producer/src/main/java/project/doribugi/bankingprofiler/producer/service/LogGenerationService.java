@@ -2,6 +2,10 @@ package project.doribugi.bankingprofiler.producer.service;
 
 import project.doribugi.bankingprofiler.producer.loggenerator.LogGenerator;
 
+/**
+ * 로그 생성 서비스 클래스.
+ * 일정 시간 간격으로 로그를 생성하여 TransferService 와 LogWritingService 로 전달한다.
+ */
 public class LogGenerationService implements Service {
   private Thread logGeneratingThread;
   private boolean onLogGeneration = false;
@@ -24,6 +28,9 @@ public class LogGenerationService implements Service {
     this.logGenerator = logGenerator;
   }
 
+  /**
+   * 서비스 시작.
+   */
   @Override
   public void start() {
     logGeneratingThread = new Thread(this::generate, "LogGeneratingThread");
@@ -31,6 +38,9 @@ public class LogGenerationService implements Service {
     logGeneratingThread.start();
   }
 
+  /**
+   * 서비스 중지.
+   */
   @Override
   public void stop() {
     try {

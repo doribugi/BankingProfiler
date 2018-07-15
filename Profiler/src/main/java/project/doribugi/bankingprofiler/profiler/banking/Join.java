@@ -2,6 +2,9 @@ package project.doribugi.bankingprofiler.profiler.banking;
 
 import java.util.Objects;
 
+/**
+ * 고객 가입에 대한 금융 거래 정보 Entity 클래스.
+ */
 public class Join implements BankingInfo {
 
   private long customerNumber;

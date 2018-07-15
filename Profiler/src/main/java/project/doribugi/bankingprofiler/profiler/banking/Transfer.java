@@ -2,6 +2,9 @@ package project.doribugi.bankingprofiler.profiler.banking;
 
 import java.util.Objects;
 
+/**
+ * 이체 대한 금융 거래 정보 Entity 클래스.
+ */
 public class Transfer implements BankingInfo {
 
   private long customerNumber;

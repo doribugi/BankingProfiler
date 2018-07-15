@@ -10,6 +10,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+/**
+ * 임의로 금융거래정보 로그를 생성하는 LogGenerator.
+ * 고객 목록 파일, 수취 계좌 정보 목록 파일을 읽어 임의로 금융거래정보를 생성한다.
+ */
 public class RandomLogGenerator implements LogGenerator {
 
   private ZonedDateTime logTime;
@@ -38,6 +42,10 @@ public class RandomLogGenerator implements LogGenerator {
     this.receivingList = Files.readAllLines(new File(receivingFilePath).toPath());
   }
 
+  /**
+   * 금융거래정보 로그를 한 개 생성하여 반환.
+   * @return 금융거래정보 로그
+   */
   @Override
   public String generate() {
     String customerName = customerList.get(random.nextInt(customerList.size()));

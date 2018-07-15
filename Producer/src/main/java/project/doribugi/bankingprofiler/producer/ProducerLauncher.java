@@ -17,6 +17,10 @@ import project.doribugi.bankingprofiler.producer.service.LogWritingService;
 import project.doribugi.bankingprofiler.producer.service.Service;
 import project.doribugi.bankingprofiler.producer.service.TransferService;
 
+/**
+ * 로그 Producer 실행 클래스.
+ * producer.properties 파일과 kafka.properties 파일이 작업 폴더에 있어야 실행된다.
+ */
 public class ProducerLauncher {
   private static final String PROPERTIES_FILE_PATH = "producer.properties";
 

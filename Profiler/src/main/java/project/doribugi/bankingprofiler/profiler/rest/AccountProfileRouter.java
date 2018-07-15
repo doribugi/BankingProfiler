@@ -7,6 +7,9 @@ import spark.Request;
 import spark.Response;
 import spark.Route;
 
+/**
+ * Account Profile 의 요청에 대한 응답을 전달하는 클래스.
+ */
 public class AccountProfileRouter implements Route {
 
   private final Repository<AccountProfile> repository;

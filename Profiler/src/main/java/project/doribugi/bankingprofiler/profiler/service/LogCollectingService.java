@@ -10,6 +10,9 @@ import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 
+/**
+ * KAFKA 를 통해 로그를 수집하는 서비스 클래스.
+ */
 public class LogCollectingService implements Service {
   private final static String KAFKA_PROPERTY_PATH = "kafka.properties";
 
@@ -28,6 +31,9 @@ public class LogCollectingService implements Service {
     this.logParsingService = logParsingService;
   }
 
+  /**
+   * 서비스 시작.
+   */
   @Override
   public void start() {
     consumer = new KafkaConsumer<>(kafkaProperties);
@@ -38,6 +44,9 @@ public class LogCollectingService implements Service {
     logCollectingThread.start();
   }
 
+  /**
+   * 서비스 중지.
+   */
   @Override
   public void stop() {
     try {

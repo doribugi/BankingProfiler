@@ -8,6 +8,9 @@ import project.doribugi.bankingprofiler.profiler.rest.AccountProfileRouter;
 import project.doribugi.bankingprofiler.profiler.rest.CustomerProfileRouter;
 import spark.Spark;
 
+/**
+ * REST API 를 제공하는 서비스 클래스.
+ */
 public class RestService implements Service {
   private static final String API_CUSTOMER_PROFILE = "/api/customer/:customer_number";
   private static final String API_ACCOUNT_PROFILE
@@ -22,6 +25,9 @@ public class RestService implements Service {
     Spark.port(port);
   }
 
+  /**
+   * 서비스 시작.
+   */
   @Override
   public void start() {
     Repository<CustomerProfile> customerProfileRepository
@@ -33,6 +39,9 @@ public class RestService implements Service {
     Spark.get(API_ACCOUNT_PROFILE, new AccountProfileRouter(accountProfileRepository));
   }
 
+  /**
+   * 서비스 중지.
+   */
   @Override
   public void stop() {
     // do nothing
