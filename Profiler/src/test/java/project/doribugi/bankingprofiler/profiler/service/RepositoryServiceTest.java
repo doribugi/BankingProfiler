@@ -1,5 +1,6 @@
 package project.doribugi.bankingprofiler.profiler.service;
 
+import java.util.Properties;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -39,8 +40,9 @@ public class RepositoryServiceTest {
       "2018-06-30 13:40:00");
 
   @Before
-  public void setUp() {
-    repositoryService = new RepositoryService();
+  public void setUp() throws Exception {
+    Properties properties = new Properties();
+    repositoryService = new RepositoryService(properties);
   }
 
   @Test
@@ -67,8 +69,7 @@ public class RepositoryServiceTest {
     AccountProfile expected = new AccountProfile(
         1,
         "3333010001",
-        "2018-06-30 13:15:00",
-        0);
+        "2018-06-30 13:15:00");
     Assert.assertEquals(expected, actual);
   }
 
@@ -93,8 +94,7 @@ public class RepositoryServiceTest {
     AccountProfile expectedAccountProfile = new AccountProfile(
         1,
         "3333010001",
-        "2018-06-30 13:15:00",
-        0);
+        "2018-06-30 13:15:00");
     expectedAccountProfile.addDeposit(new Transaction(100000, "2018-06-30 13:15:00"));
     Assert.assertEquals(actualAccountProfile, expectedAccountProfile);
     Assert.assertEquals(100000, expectedAccountProfile.getBalance());
@@ -122,8 +122,7 @@ public class RepositoryServiceTest {
     AccountProfile expectedAccountProfile = new AccountProfile(
         1,
         "3333010001",
-        "2018-06-30 13:15:00",
-        0);
+        "2018-06-30 13:15:00");
     expectedAccountProfile.addDeposit(new Transaction(100000, "2018-06-30 13:15:00"));
     expectedAccountProfile.addWithdrawal(new Transaction(10000, "2018-06-30 13:30:00"));
     Assert.assertEquals(actualAccountProfile, expectedAccountProfile);
@@ -152,8 +151,7 @@ public class RepositoryServiceTest {
     AccountProfile expectedAccountProfile = new AccountProfile(
         1,
         "3333010001",
-        "2018-06-30 13:15:00",
-        0);
+        "2018-06-30 13:15:00");
     expectedAccountProfile.addDeposit(new Transaction(100000, "2018-06-30 13:15:00"));
     expectedAccountProfile.addTransfer(new Transaction(30000, "2018-06-30 13:40:00"));
     Assert.assertEquals(actualAccountProfile, expectedAccountProfile);

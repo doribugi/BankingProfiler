@@ -9,7 +9,7 @@ import java.util.Map;
  */
 public class MemoryRepository<T> implements Repository<T> {
 
-  private Map<String, T> dataMap = new HashMap<>();
+  protected Map<String, T> dataMap = new HashMap<>();
 
   @Override
   public T read(String id) {
@@ -17,18 +17,7 @@ public class MemoryRepository<T> implements Repository<T> {
   }
 
   @Override
-  public void create(String id, T t) {
-    if (dataMap.containsKey(id)) {
-      throw new IllegalArgumentException();
-    }
-    dataMap.put(id, t);
-  }
-
-  @Override
-  public void update(String id, T t) {
-    if (!dataMap.containsKey(id)) {
-      throw new IllegalArgumentException();
-    }
+  public void save(String id, T t) {
     dataMap.put(id, t);
   }
 }

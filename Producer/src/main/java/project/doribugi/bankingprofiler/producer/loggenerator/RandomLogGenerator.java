@@ -96,7 +96,7 @@ public class RandomLogGenerator implements LogGenerator {
     int customerNumber = customerMap.get(customerName);
     String accountNumber = accountMap.get(customerName);
     int prevBalance = balanceMap.get(accountNumber);
-    int deposit = random.nextInt(100000000) + 1;
+    int deposit = random.nextInt(1000000) + 1;
     balanceMap.put(accountNumber, prevBalance + deposit);
     return String.format("deposit, %d, %s, %d, %s",
         customerNumber,

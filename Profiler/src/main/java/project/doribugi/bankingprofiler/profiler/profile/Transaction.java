@@ -18,6 +18,10 @@ public class Transaction {
     return amount;
   }
 
+  public String getDatetime() {
+    return datetime;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {

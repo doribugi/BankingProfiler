@@ -23,12 +23,10 @@ public class AccountProfile {
   public AccountProfile(
       long customerNumber,
       String accountNumber,
-      String createDt,
-      long balance) {
+      String createDt) {
     this.customerNumber = customerNumber;
     this.accountNumber = accountNumber;
     this.createDt = createDt;
-    this.balance = balance;
   }
 
   public long getCustomerNumber() {
@@ -37,6 +35,10 @@ public class AccountProfile {
 
   public String getAccountNumber() {
     return accountNumber;
+  }
+
+  public String getCreateDt() {
+    return createDt;
   }
 
   public long getBalance() {
