@@ -22,6 +22,11 @@ public class RepositoryService implements Service {
     // do nothing
   }
 
+  @Override
+  public void stop() {
+    // do nothing
+  }
+
   public Repository<CustomerProfile> getCustomerProfileRepository() {
     return customerProfileRepository;
   }
@@ -30,7 +35,7 @@ public class RepositoryService implements Service {
     return accountProfileRepository;
   }
 
-  public void update(BankingInfo bankingInfo) {
+  public synchronized void update(BankingInfo bankingInfo) {
     if (bankingInfo instanceof Join) {
       createCustomerProfile((Join)bankingInfo);
     } else if (bankingInfo instanceof AccountCreation) {

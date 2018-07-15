@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import kafka.common.UnknownException;
 import project.doribugi.bankingprofiler.profiler.banking.BankingInfo;
@@ -22,7 +21,7 @@ public class LogParsingService implements Service {
   private final RepositoryService repositoryService;
   private final BlockingQueue<LogInfo> queue = new LinkedBlockingQueue<>();
   private Thread logParsingThread;
-  private boolean onLogParsing = false;
+  private boolean onLogParse = false;
 
   public LogParsingService(RepositoryService repositoryService) {
 
@@ -37,9 +36,30 @@ public class LogParsingService implements Service {
 
   @Override
   public void start() {
-    logParsingThread = new Thread(this::parseLog, "LogParsingThread");
+    logParsingThread = new Thread(this::parse, "LogParsingThread");
     logParsingThread.setDaemon(true);
     logParsingThread.start();
+  }
+
+  @Override
+  public void stop() {
+    while (!queue.isEmpty()) {
+      try {
+        Thread.sleep(500);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+    }
+
+    try {
+      onLogParse = false;
+      if (logParsingThread != null) {
+        logParsingThread.join();
+        logParsingThread = null;
+      }
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
   }
 
   public List<String> getTopicList() {
@@ -49,7 +69,7 @@ public class LogParsingService implements Service {
         .collect(Collectors.toList());
   }
 
-  public void put(String topic, String logMessage) {
+  public void parse(String topic, String logMessage) {
     try {
       queue.put(new LogInfo(topic, logMessage));
     } catch (InterruptedException e) {
@@ -57,24 +77,26 @@ public class LogParsingService implements Service {
     }
   }
 
-  private void parseLog() {
-    onLogParsing = true;
-    while (onLogParsing) {
+  private void parse() {
+    onLogParse = true;
+    while (onLogParse) {
       LogInfo logInfo = queue.poll();
       if (logInfo != null) {
         try {
-          BankingInfo bankingInfo = parseLog(logInfo);
+          BankingInfo bankingInfo = parse(logInfo);
           repositoryService.update(bankingInfo);
         } catch (UnknownException e) {
           System.out.println("Invalid log topic:" + logInfo.topic);
         } catch (IllegalLogFormatException e) {
+          e.printStackTrace();
+        } catch (Exception e) {
           e.printStackTrace();
         }
       }
     }
   }
 
-  private BankingInfo parseLog(LogInfo logInfo) throws IllegalLogFormatException {
+  private BankingInfo parse(LogInfo logInfo) throws IllegalLogFormatException {
     LogParser<? extends BankingInfo> logParser = logParserList
         .stream()
         .filter(parser -> logInfo.topic.equals(parser.topic()))
@@ -82,17 +104,6 @@ public class LogParsingService implements Service {
         .orElseThrow(UnknownException::new);
 
     return logParser.parse(logInfo.logMessage);
-  }
-
-  public void stop() throws InterruptedException {
-    while (!queue.isEmpty()) {
-      Thread.sleep(500);
-    }
-    onLogParsing = false;
-    if (logParsingThread != null) {
-      logParsingThread.join();
-      logParsingThread = null;
-    }
   }
 
   private class LogInfo {
