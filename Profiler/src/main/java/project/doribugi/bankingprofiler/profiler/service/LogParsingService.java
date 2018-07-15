@@ -19,7 +19,7 @@ public class LogParsingService implements Service {
 
   private final List<LogParser<? extends BankingInfo>> logParserList = new ArrayList<>();
   private final RepositoryService repositoryService;
-  private final BlockingQueue<LogInfo> queue = new LinkedBlockingQueue<>();
+  private final BlockingQueue<String> queue = new LinkedBlockingQueue<>();
   private Thread logParsingThread;
   private boolean onLogParse = false;
 
@@ -62,16 +62,9 @@ public class LogParsingService implements Service {
     }
   }
 
-  public List<String> getTopicList() {
-    return logParserList
-        .stream()
-        .map(LogParser::topic)
-        .collect(Collectors.toList());
-  }
-
-  public void parse(String topic, String logMessage) {
+  public void parse(String logMessage) {
     try {
-      queue.put(new LogInfo(topic, logMessage));
+      queue.put(logMessage);
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
@@ -80,39 +73,22 @@ public class LogParsingService implements Service {
   private void parse() {
     onLogParse = true;
     while (onLogParse) {
-      LogInfo logInfo = queue.poll();
-      if (logInfo != null) {
+      String logMessage = queue.poll();
+      if (logMessage != null) {
         try {
-          BankingInfo bankingInfo = parse(logInfo);
+          LogParser<? extends BankingInfo> logParser = logParserList
+              .stream()
+              .filter(parser -> logMessage.split(",")[0].trim().equals(parser.getLogType()))
+              .findFirst()
+              .orElseThrow(UnknownException::new);
+          BankingInfo bankingInfo = logParser.parse(logMessage);
           repositoryService.update(bankingInfo);
-        } catch (UnknownException e) {
-          System.out.println("Invalid log topic:" + logInfo.topic);
         } catch (IllegalLogFormatException e) {
           e.printStackTrace();
         } catch (Exception e) {
           e.printStackTrace();
         }
       }
-    }
-  }
-
-  private BankingInfo parse(LogInfo logInfo) throws IllegalLogFormatException {
-    LogParser<? extends BankingInfo> logParser = logParserList
-        .stream()
-        .filter(parser -> logInfo.topic.equals(parser.topic()))
-        .findFirst()
-        .orElseThrow(UnknownException::new);
-
-    return logParser.parse(logInfo.logMessage);
-  }
-
-  private class LogInfo {
-    private final String topic;
-    private final String logMessage;
-
-    LogInfo(String topic, String logMessage) {
-      this.topic = topic;
-      this.logMessage = logMessage;
     }
   }
 }

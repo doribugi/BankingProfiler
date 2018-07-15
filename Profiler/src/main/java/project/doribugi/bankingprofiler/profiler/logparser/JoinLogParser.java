@@ -5,7 +5,7 @@ import project.doribugi.bankingprofiler.profiler.banking.Join;
 public class JoinLogParser implements LogParser<Join> {
 
   @Override
-  public String topic() {
+  public String getLogType() {
     return "join";
   }
 

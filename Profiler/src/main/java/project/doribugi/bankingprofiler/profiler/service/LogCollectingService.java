@@ -2,6 +2,8 @@ package project.doribugi.bankingprofiler.profiler.service;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
@@ -29,8 +31,7 @@ public class LogCollectingService implements Service {
   @Override
   public void start() {
     consumer = new KafkaConsumer<>(kafkaProperties);
-    List<String> topicList = logParsingService.getTopicList();
-    consumer.subscribe(topicList);
+    consumer.subscribe(Collections.singletonList("banking_profile"));
 
     logCollectingThread = new Thread(this::collectLog, "LogCollectingThread");
     logCollectingThread.setDaemon(true);
@@ -59,7 +60,11 @@ public class LogCollectingService implements Service {
       final ConsumerRecords<String, String> records = consumer.poll(1500);
       records.forEach(record -> {
         System.out.println("Collect log - " + record.value());
-        logParsingService.parse(record.topic(), record.value());
+        if (record.topic().equals("banking_profile")) {
+          logParsingService.parse(record.value());
+        } else {
+          System.out.println("Invalid log topic: " + record.topic());
+        }
       });
     }
   }

@@ -5,7 +5,7 @@ import project.doribugi.bankingprofiler.profiler.banking.Withdrawal;
 public class WithdrawalLogParser implements LogParser<Withdrawal> {
 
   @Override
-  public String topic() {
+  public String getLogType() {
     return "withdrawal";
   }
 

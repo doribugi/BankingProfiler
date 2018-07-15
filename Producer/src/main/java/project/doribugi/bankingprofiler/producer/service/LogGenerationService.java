@@ -56,8 +56,9 @@ public class LogGenerationService implements Service {
         String log = logGenerator.generate();
         transferService.send(log);
         logWritingService.write(log);
-        System.out.println("generated log - " + log);
         ++logCount;
+        String logMessage = String.format("Generated log #%d - %s", logCount, log);
+        System.out.println(logMessage);
         Thread.sleep(logGenerationIntervalMilliSec);
       }
       onLogGeneration = false;

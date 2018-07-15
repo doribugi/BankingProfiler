@@ -32,6 +32,6 @@ public class TransferService implements Service {
 
   public void send(String log) {
     String topic = log.split(",")[0].trim();
-    producer.send(new ProducerRecord<>(topic, log));
+    producer.send(new ProducerRecord<>("banking_profile", log));
   }
 }

@@ -5,7 +5,7 @@ import project.doribugi.bankingprofiler.profiler.banking.Deposit;
 public class DepositLogParser implements LogParser<Deposit> {
 
   @Override
-  public String topic() {
+  public String getLogType() {
     return "deposit";
   }
 
