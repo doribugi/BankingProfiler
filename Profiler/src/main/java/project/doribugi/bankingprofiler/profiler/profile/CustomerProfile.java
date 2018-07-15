@@ -1,56 +1,62 @@
 package project.doribugi.bankingprofiler.profiler.profile;
 
+import com.google.gson.annotations.SerializedName;
 import java.util.Objects;
 
 public class CustomerProfile {
-  private long customer_number;
+  @SerializedName("customer_number")
+  private long customerNumber;
   private String name;
-  private String join_dt;
-  private long largest_deposit_acmount;
-  private long largest_withdrawal_acmount;
-  private long largest_transfer_acmount;
+  @SerializedName("join_dt")
+  private String joinDt;
+  @SerializedName("largest_deposit_acmount")
+  private long largestDepositAmount;
+  @SerializedName("largest_withdrawal_acmount")
+  private long largestWithdrawalAmount;
+  @SerializedName("largest_transfer_acmount")
+  private long largestTransferAmount;
 
   public CustomerProfile(
-      long customer_number,
+      long customerNumber,
       String name,
-      String join_dt,
-      long largest_deposit_acmount,
-      long largest_withdrawal_acmount,
-      long largest_transfer_acmount) {
-    this.customer_number = customer_number;
+      String joinDt,
+      long largestDepositAmount,
+      long largestWithdrawalAmount,
+      long largestTransferAmount) {
+    this.customerNumber = customerNumber;
     this.name = name;
-    this.join_dt = join_dt;
-    this.largest_deposit_acmount = largest_deposit_acmount;
-    this.largest_withdrawal_acmount = largest_withdrawal_acmount;
-    this.largest_transfer_acmount = largest_transfer_acmount;
+    this.joinDt = joinDt;
+    this.largestDepositAmount = largestDepositAmount;
+    this.largestWithdrawalAmount = largestWithdrawalAmount;
+    this.largestTransferAmount = largestTransferAmount;
   }
 
-  public long getCustomer_number() {
-    return customer_number;
+  public long getCustomerNumber() {
+    return customerNumber;
   }
 
-  public long getLargest_deposit_acmount() {
-    return largest_deposit_acmount;
+  public long getLargestDepositAmount() {
+    return largestDepositAmount;
   }
 
-  public void setLargest_deposit_acmount(long largest_deposit_acmount) {
-    this.largest_deposit_acmount = largest_deposit_acmount;
+  public void setLargestDepositAmount(long largestDepositAmount) {
+    this.largestDepositAmount = largestDepositAmount;
   }
 
-  public long getLargest_withdrawal_acmount() {
-    return largest_withdrawal_acmount;
+  public long getLargestWithdrawalAmount() {
+    return largestWithdrawalAmount;
   }
 
-  public void setLargest_withdrawal_acmount(long largest_withdrawal_acmount) {
-    this.largest_withdrawal_acmount = largest_withdrawal_acmount;
+  public void setLargestWithdrawalAmount(long largestWithdrawalAmount) {
+    this.largestWithdrawalAmount = largestWithdrawalAmount;
   }
 
   public long getLargest_transfer_acmount() {
-    return largest_transfer_acmount;
+    return largestTransferAmount;
   }
 
   public void setLargest_transfer_acmount(long largest_transfer_acmount) {
-    this.largest_transfer_acmount = largest_transfer_acmount;
+    this.largestTransferAmount = largest_transfer_acmount;
   }
 
   @Override
@@ -62,19 +68,19 @@ public class CustomerProfile {
       return false;
     }
     CustomerProfile that = (CustomerProfile) o;
-    return customer_number == that.customer_number &&
-        largest_deposit_acmount == that.largest_deposit_acmount &&
-        largest_withdrawal_acmount == that.largest_withdrawal_acmount &&
-        largest_transfer_acmount == that.largest_transfer_acmount &&
+    return customerNumber == that.customerNumber &&
+        largestDepositAmount == that.largestDepositAmount &&
+        largestWithdrawalAmount == that.largestWithdrawalAmount &&
+        largestTransferAmount == that.largestTransferAmount &&
         Objects.equals(name, that.name) &&
-        Objects.equals(join_dt, that.join_dt);
+        Objects.equals(joinDt, that.joinDt);
   }
 
   @Override
   public int hashCode() {
 
     return Objects
-        .hash(customer_number, name, join_dt, largest_deposit_acmount, largest_withdrawal_acmount,
-            largest_transfer_acmount);
+        .hash(customerNumber, name, joinDt, largestDepositAmount, largestWithdrawalAmount,
+            largestTransferAmount);
   }
 }

@@ -59,7 +59,7 @@ public class RepositoryService implements Service {
         0,
         0,
         0);
-    String customerId = Long.toString(customerProfile.getCustomer_number());
+    String customerId = Long.toString(customerProfile.getCustomerNumber());
     customerProfileRepository.create(customerId, customerProfile);
   }
 
@@ -69,8 +69,8 @@ public class RepositoryService implements Service {
         accountCreation.getAccountNumber(),
         accountCreation.getCreateDt(),
         0);
-    String accountId = Long.toString(accountProfile.getCustomer_number())
-        + "_" + accountProfile.getAccount_number();
+    String accountId = Long.toString(accountProfile.getCustomerNumber())
+        + "_" + accountProfile.getAccountNumber();
     accountProfileRepository.create(accountId, accountProfile);
   }
 
@@ -78,8 +78,8 @@ public class RepositoryService implements Service {
     String customerId = Long.toString(deposit.getCustomerNumber());
     CustomerProfile customerProfile = customerProfileRepository.read(customerId);
     long largestDeposit
-        = Math.max(customerProfile.getLargest_deposit_acmount(), deposit.getDepositAmount());
-    customerProfile.setLargest_deposit_acmount(largestDeposit);
+        = Math.max(customerProfile.getLargestDepositAmount(), deposit.getDepositAmount());
+    customerProfile.setLargestDepositAmount(largestDeposit);
     customerProfileRepository.update(customerId, customerProfile);
 
     String accountId = Long.toString(deposit.getCustomerNumber()) + "_" + deposit.getAccountNumber();
@@ -93,8 +93,8 @@ public class RepositoryService implements Service {
     String customerId = Long.toString(withdrawal.getCustomerNumber());
     CustomerProfile customerProfile = customerProfileRepository.read(customerId);
     long largestDeposit
-        = Math.max(customerProfile.getLargest_withdrawal_acmount(), withdrawal.getWithdrawalAmount());
-    customerProfile.setLargest_withdrawal_acmount(largestDeposit);
+        = Math.max(customerProfile.getLargestWithdrawalAmount(), withdrawal.getWithdrawalAmount());
+    customerProfile.setLargestWithdrawalAmount(largestDeposit);
     customerProfileRepository.update(customerId, customerProfile);
 
     String accountId = Long.toString(withdrawal.getCustomerNumber()) + "_" + withdrawal.getAccountNumber();
