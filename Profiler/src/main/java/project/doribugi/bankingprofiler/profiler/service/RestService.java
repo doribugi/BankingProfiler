@@ -32,4 +32,9 @@ public class RestService implements Service {
         = repositoryService.getAccountProfileRepository();
     Spark.get(API_ACCOUNT_PROFILE, new AccountProfileRouter(accountProfileRepository));
   }
+
+  @Override
+  public void stop() {
+    // do nothing
+  }
 }

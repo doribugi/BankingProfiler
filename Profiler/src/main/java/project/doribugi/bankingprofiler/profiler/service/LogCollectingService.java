@@ -4,7 +4,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
-import java.util.logging.Logger;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -14,7 +13,7 @@ public class LogCollectingService implements Service {
 
   private KafkaConsumer<String, String> consumer;
   private Thread logCollectingThread;
-  private boolean onLogProcessing = false;
+  private boolean onLogCollection = false;
   private final Properties kafkaProperties = new Properties();
   private final LogParsingService logParsingService;
 
@@ -38,24 +37,30 @@ public class LogCollectingService implements Service {
     logCollectingThread.start();
   }
 
+  @Override
+  public void stop() {
+    try {
+      onLogCollection = false;
+      if (logCollectingThread != null) {
+        consumer.wakeup();
+        logCollectingThread.join();
+        logCollectingThread = null;
+      }
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+
+    consumer.close();
+  }
+
   private void collectLog() {
-    onLogProcessing = true;
-    while (onLogProcessing) {
+    onLogCollection = true;
+    while (onLogCollection) {
       final ConsumerRecords<String, String> records = consumer.poll(1500);
       records.forEach(record -> {
         System.out.println("Collect log - " + record.value());
-        logParsingService.put(record.topic(), record.value());
+        logParsingService.parse(record.topic(), record.value());
       });
     }
-  }
-
-  public void stop() throws InterruptedException {
-    onLogProcessing = false;
-    if (logCollectingThread != null) {
-      consumer.wakeup();
-      logCollectingThread.join();
-      logCollectingThread = null;
-    }
-    consumer.close();
   }
 }

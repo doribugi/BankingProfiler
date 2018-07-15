@@ -1,4 +1,4 @@
-package project.doribugi.bankingprofiler.profiler.service;
+package project.doribugi.bankingprofiler.producer.service;
 
 public interface Service {
 
