@@ -1,0 +1,50 @@
+# 모든 테이블 삭제
+DROP TABLE CustomerProfile;
+DROP TABLE AccountProfile;
+DROP TABLE Deposit;
+DROP TABLE Withdrawal;
+DROP TABLE Transfer;
+
+# CustomerProfile 테이블 생성
+CREATE TABLE CustomerProfile (
+  customerNumber BIGINT NOT NULL,
+  name VARCHAR(125) NOT NULL,
+  joinDt VARCHAR(20) NOT NULL,
+  largestDepositAmount BIGINT NOT NULL,
+  largestWithdrawalAmount BIGINT NOT NULL,
+  largestTransferAmount BIGINT NOT NULL,
+  PRIMARY KEY (customerNumber));
+
+# AccountProfile 테이블 생성
+CREATE TABLE AccountProfile (
+  accountNumber VARCHAR(20) NOT NULL,
+  customerNumber BIGINT NOT NULL,
+  createDt VARCHAR(20) NOT NULL,
+  PRIMARY KEY (accountNumber));
+
+# Deposit 테이블 생성
+CREATE TABLE Deposit (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  accountNumber VARCHAR(125) NOT NULL,
+  amount BIGINT NOT NULL,
+  datetime VARCHAR(20) NOT NULL,
+  PRIMARY KEY (id));
+CREATE INDEX IDX_DEPOSIT ON Deposit(accountNumber);
+
+# Withdrawal 테이블 생성
+CREATE TABLE Withdrawal (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  accountNumber VARCHAR(20) NOT NULL,
+  amount BIGINT NOT NULL,
+  datetime VARCHAR(20) NOT NULL,
+  PRIMARY KEY (id));
+CREATE INDEX IDX_WITHDRAWAL ON Withdrawal(accountNumber);
+
+# Transfer 테이블 생성
+CREATE TABLE Transfer (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  accountNumber VARCHAR(20) NOT NULL,
+  amount BIGINT NOT NULL,
+  datetime VARCHAR(20) NOT NULL,
+  PRIMARY KEY (id));
+CREATE INDEX IDX_TRANSFER ON Transfer(accountNumber);
