@@ -1,35 +1,39 @@
 package project.doribugi.bankingprofiler.profiler.profile;
 
+import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class AccountProfile {
-  private long customer_number;
-  private String account_number;
-  private String create_dt;
+  @SerializedName("customer_number")
+  private long customerNumber;
+  @SerializedName("account_number")
+  private String accountNumber;
+  @SerializedName("create_dt")
+  private String createDt;
   private long balance;
   private List<Transaction> deposits = new ArrayList<>();
   private List<Transaction> withdrawals = new ArrayList<>();
   private List<Transaction> transfers = new ArrayList<>();
 
   public AccountProfile(
-      long customer_number,
-      String account_number,
-      String create_dt,
+      long customerNumber,
+      String accountNumber,
+      String createDt,
       long balance) {
-    this.customer_number = customer_number;
-    this.account_number = account_number;
-    this.create_dt = create_dt;
+    this.customerNumber = customerNumber;
+    this.accountNumber = accountNumber;
+    this.createDt = createDt;
     this.balance = balance;
   }
 
-  public long getCustomer_number() {
-    return customer_number;
+  public long getCustomerNumber() {
+    return customerNumber;
   }
 
-  public String getAccount_number() {
-    return account_number;
+  public String getAccountNumber() {
+    return accountNumber;
   }
 
   public long getBalance() {
@@ -60,10 +64,10 @@ public class AccountProfile {
       return false;
     }
     AccountProfile that = (AccountProfile) o;
-    return customer_number == that.customer_number &&
+    return customerNumber == that.customerNumber &&
         balance == that.balance &&
-        Objects.equals(account_number, that.account_number) &&
-        Objects.equals(create_dt, that.create_dt) &&
+        Objects.equals(accountNumber, that.accountNumber) &&
+        Objects.equals(createDt, that.createDt) &&
         Objects.equals(deposits, that.deposits) &&
         Objects.equals(withdrawals, that.withdrawals) &&
         Objects.equals(transfers, that.transfers);
@@ -73,7 +77,7 @@ public class AccountProfile {
   public int hashCode() {
 
     return Objects
-        .hash(customer_number, account_number, create_dt, balance, deposits, withdrawals,
+        .hash(customerNumber, accountNumber, createDt, balance, deposits, withdrawals,
             transfers);
   }
 }
