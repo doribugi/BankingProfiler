@@ -2,6 +2,9 @@ package project.doribugi.bankingprofiler.profiler.profile;
 
 import java.util.Objects;
 
+/**
+ * Account Profile 의 금융 거래 공통 정보 Entity 클래스.
+ */
 public class Transaction {
   private long amount;
   private String datetime;

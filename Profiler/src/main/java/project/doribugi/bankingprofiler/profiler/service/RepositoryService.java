@@ -12,16 +12,25 @@ import project.doribugi.bankingprofiler.profiler.profile.Transaction;
 import project.doribugi.bankingprofiler.profiler.repository.MemoryRepository;
 import project.doribugi.bankingprofiler.profiler.repository.Repository;
 
+/**
+ * Repository 와의 인터페이스를 수행하는 서비스 클래스.
+ */
 public class RepositoryService implements Service {
 
   private final Repository<CustomerProfile> customerProfileRepository = new MemoryRepository<>();
   private final Repository<AccountProfile> accountProfileRepository = new MemoryRepository<>();
 
+  /**
+   * 서비스 시작.
+   */
   @Override
   public void start() {
     // do nothing
   }
 
+  /**
+   * 서비스 중지.
+   */
   @Override
   public void stop() {
     // do nothing

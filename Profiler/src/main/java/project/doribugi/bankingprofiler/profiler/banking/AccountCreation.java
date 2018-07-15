@@ -2,6 +2,9 @@ package project.doribugi.bankingprofiler.profiler.banking;
 
 import java.util.Objects;
 
+/**
+ * 계좌 생성에 대한 금융 거래 정보 Entity 클래스.
+ */
 public class AccountCreation implements BankingInfo {
 
   private long customerNumber;

@@ -11,6 +11,10 @@ import project.doribugi.bankingprofiler.profiler.service.RepositoryService;
 import project.doribugi.bankingprofiler.profiler.service.RestService;
 import project.doribugi.bankingprofiler.profiler.service.Service;
 
+/**
+ * Profiler 실행 클래스.
+ * profiler.properties 파일과 kafka.properties 파일이 작업 폴더에 있어야 실행된다.
+ */
 public class ProfilerLauncher {
   private static final String PROPERTIES_FILE_PATH = "profiler.properties";
 

@@ -4,6 +4,9 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * 로그를 파일에 출력하는 서비스 클래스.
+ */
 public class LogWritingService implements Service {
   private BufferedWriter writer;
   private String filepath;
@@ -12,6 +15,9 @@ public class LogWritingService implements Service {
     this.filepath = filepath;
   }
 
+  /**
+   * 서비스 시작.
+   */
   @Override
   public void start() {
     try {
@@ -21,6 +27,9 @@ public class LogWritingService implements Service {
     }
   }
 
+  /**
+   * 서비스 중지.
+   */
   @Override
   public void stop() {
     try {
@@ -30,6 +39,10 @@ public class LogWritingService implements Service {
     }
   }
 
+  /**
+   * 금융거래정보 로그를 파일에 출력한다.
+   * @param log 금융거래정보 로그
+   */
   public void write(String log) {
     try {
       writer.write(log);

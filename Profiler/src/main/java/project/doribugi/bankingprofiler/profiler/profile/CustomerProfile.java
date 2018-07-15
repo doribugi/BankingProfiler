@@ -3,6 +3,9 @@ package project.doribugi.bankingprofiler.profiler.profile;
 import com.google.gson.annotations.SerializedName;
 import java.util.Objects;
 
+/**
+ * REST API 로 제공하기 위한 Customer Profile Entity 클래스.
+ */
 public class CustomerProfile {
   @SerializedName("customer_number")
   private long customerNumber;
