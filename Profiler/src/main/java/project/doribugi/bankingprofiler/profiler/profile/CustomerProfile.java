@@ -38,6 +38,14 @@ public class CustomerProfile {
     return customerNumber;
   }
 
+  public String getName() {
+    return name;
+  }
+
+  public String getJoinDt() {
+    return joinDt;
+  }
+
   public long getLargestDepositAmount() {
     return largestDepositAmount;
   }
@@ -54,12 +62,12 @@ public class CustomerProfile {
     this.largestWithdrawalAmount = largestWithdrawalAmount;
   }
 
-  public long getLargest_transfer_acmount() {
+  public long getLargestTransferAmount() {
     return largestTransferAmount;
   }
 
-  public void setLargest_transfer_acmount(long largest_transfer_acmount) {
-    this.largestTransferAmount = largest_transfer_acmount;
+  public void setLargestTransferAmount(long largestTransferAmount) {
+    this.largestTransferAmount = largestTransferAmount;
   }
 
   @Override

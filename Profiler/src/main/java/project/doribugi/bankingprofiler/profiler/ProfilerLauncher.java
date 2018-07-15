@@ -2,6 +2,7 @@ package project.doribugi.bankingprofiler.profiler;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -18,12 +19,12 @@ import project.doribugi.bankingprofiler.profiler.service.Service;
 public class ProfilerLauncher {
   private static final String PROPERTIES_FILE_PATH = "profiler.properties";
 
-  public static void main(String[] args) throws IOException {
+  public static void main(String[] args) throws Exception {
     Properties properties = new Properties();
     FileReader reader = new FileReader(PROPERTIES_FILE_PATH);
     properties.load(reader);
 
-    RepositoryService repositoryService = new RepositoryService();
+    RepositoryService repositoryService = new RepositoryService(properties);
     LogParsingService logParsingService = new LogParsingService(repositoryService);
     LogCollectingService logCollectingService = new LogCollectingService(logParsingService);
 

@@ -4,8 +4,6 @@ import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,8 +23,7 @@ public class AccountProfileRouterTest {
         new AccountProfile(
             1,
             "3333010001",
-            "2018-06-30 13:15:00",
-            0);
+            "2018-06-30 13:15:00");
     Transaction deposit1 = new Transaction(100000, "2018-06-30 13:15:00");
     accountProfile.addDeposit(deposit1);
     Transaction deposit2 = new Transaction(50000, "2018-06-30 13:25:00");
