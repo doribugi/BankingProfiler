@@ -5,7 +5,7 @@ import project.doribugi.bankingprofiler.profiler.banking.Transfer;
 public class TransferLogParser implements LogParser<Transfer> {
 
   @Override
-  public String topic() {
+  public String getLogType() {
     return "transfer";
   }
 

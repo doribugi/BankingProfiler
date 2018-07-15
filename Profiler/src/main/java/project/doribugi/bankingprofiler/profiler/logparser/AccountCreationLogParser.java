@@ -5,7 +5,7 @@ import project.doribugi.bankingprofiler.profiler.banking.AccountCreation;
 public class AccountCreationLogParser implements LogParser<AccountCreation> {
 
   @Override
-  public String topic() {
+  public String getLogType() {
     return "account_create";
   }
 

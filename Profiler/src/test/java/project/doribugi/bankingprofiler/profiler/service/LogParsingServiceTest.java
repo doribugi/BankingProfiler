@@ -16,11 +16,12 @@ public class LogParsingServiceTest {
     LogParsingService logParsingService = new LogParsingService(repositoryService);
     logParsingService.start();
 
-    logParsingService.parse("join", "join, 1, 홍길동, 2018-06-30 13:00:00");
-    logParsingService.parse("account_create", "account_create, 1, 3333010001, 2018-06-30 13:15:00");
-    logParsingService.parse("deposit", "deposit, 1, 3333010001, 100000, 2018-06-30 13:20:00");
-    logParsingService.parse("withdrawal", "withdrawal, 1, 3333010001, 10000, 2018-06-30 13:30:00");
-    logParsingService.parse("transfer", "transfer, 1, 3333010001, 카카오뱅크, 3333010002, 이순신, 30000, 2018-06-30 13:40:00");
+    logParsingService.parse("join, 1, 홍길동, 2018-06-30 13:00:00");
+    logParsingService.parse("account_create, 1, 3333010001, 2018-06-30 13:15:00");
+    logParsingService.parse("deposit, 1, 3333010001, 100000, 2018-06-30 13:20:00");
+    logParsingService.parse("withdrawal, 1, 3333010001, 10000, 2018-06-30 13:30:00");
+    logParsingService.parse(
+        "transfer, 1, 3333010001, 카카오뱅크, 3333010002, 이순신, 30000, 2018-06-30 13:40:00");
 
     logParsingService.stop();
 
